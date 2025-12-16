@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Para Você 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* FUNDO */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* TELA INICIAL */
+#intro{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+}
+.intro-box{
+  text-align:center;
+  max-width:800px;
+  padding:40px;
+}
+.intro-box p{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  margin:25px 0;
+  opacity:0;
+  animation:fadeUp 1.4s ease forwards;
+}
+.intro-box p:nth-child(1){animation-delay:.8s}
+.intro-box p:nth-child(2){animation-delay:2.6s}
+.intro-box p:nth-child(3){animation-delay:4.4s}
+
+.intro-box button{
+  margin-top:60px;
+  padding:18px 54px;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(135deg,#fb7185,#f43f5e);
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+  opacity:0;
+  animation:fadeUp 1.4s ease forwards;
+  animation-delay:6.5s;
+  box-shadow:0 0 40px rgba(244,63,94,.6);
+}
+
+/* MENU */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(12px);
+  z-index:10;
+}
+nav h1{
+  font-family:'Playfair Display',serif;
+  font-size:20px;
+}
+nav button{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:15px;
+  margin-left:25px;
+  cursor:pointer;
+  opacity:.7;
+}
+nav button:hover{opacity:1}
+
+/* SEÇÕES */
+section{
+  min-height:100vh;
+  padding:140px 20px 80px;
+  display:none;
+  text-align:center;
+}
+section.ativa{display:block}
+
+/* CARTA */
+.carta{
+  max-width:700px;
+  margin:auto;
+  background:rgba(255,255,255,.06);
+  border-radius:30px;
+  padding:50px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 0 70px rgba(255,255,255,.08);
+}
+.carta p{
+  font-size:20px;
+  line-height:1.8;
+  margin-bottom:30px;
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+}
+.carta p:nth-child(1){animation-delay:.4s}
+.carta p:nth-child(2){animation-delay:1.2s}
+.carta p:nth-child(3){animation-delay:2s}
+
+/* GALERIA */
+.galeria{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:50px;
+}
+.galeria img{
+  width:100%;
+  border-radius:28px;
+  box-shadow:0 30px 70px rgba(0,0,0,.7);
+  transition:.4s;
+}
+.galeria img:hover{transform:scale(1.05)}
+
+/* BOTÃO VÍDEO */
+.playVideo{
+  margin:50px auto;
+  padding:18px 50px;
+  font-size:18px;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(135deg,#fb7185,#f43f5e);
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 0 45px rgba(244,63,94,.6);
+}
+
+/* MODO VÍDEO */
+.video{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+}
+.video img{
+  max-width:80%;
+  max-height:80%;
+  border-radius:30px;
+  animation:fade 1.2s;
+}
+.exit{
+  position:fixed;
+  top:30px;
+  right:30px;
+  background:none;
+  border:2px solid #fff;
+  color:#fff;
+  padding:10px 22px;
+  border-radius:40px;
+  cursor:pointer;
+  z-index:210;
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:none}
+}
+@keyframes fade{
+  from{opacity:0}
+  to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<!-- TELA INICIAL -->
+<div id="intro">
+  <div class="intro-box">
+    <p>Algumas pessoas passam.</p>
+    <p>Outras ficam.</p>
+    <p>E você… mudou tudo.</p>
+    <button onclick="entrar()">Começar 💖</button>
+  </div>
+</div>
+
+<nav>
+  <h1>💖 Para Você</h1>
+  <div>
+    <button onclick="abrir('inicio')">Início</button>
+    <button onclick="abrir('carta')">Carta</button>
+    <button onclick="abrir('fotos')">Fotos</button>
+  </div>
+</nav>
+
+<section id="inicio" class="ativa">
+  <h2 style="font-family:'Playfair Display';font-size:3rem">Isso é pra você</h2>
+</section>
+
+<section id="carta">
+  <div class="carta">
+    <p>Desde que você chegou, tudo ganhou mais sentido.</p>
+    <p>Os dias ficaram mais leves, os momentos mais especiais.</p>
+    <p>E se existir um pra sempre, eu espero que seja com você 💖</p>
+  </div>
+</section>
+
+<section id="fotos">
+  <h2 style="font-family:'Playfair Display';margin-bottom:30px">Nossos momentos</h2>
+  <button class="playVideo" onclick="iniciarVideo()">▶ Ver como vídeo</button>
+  <div class="galeria">
+    <img src="1.jpeg"><img src="2.jpeg"><img src="3.jpeg">
+    <img src="4.jpeg"><img src="5.jpeg"><img src="6.jpeg">
+  </div>
+</section>
+
+<div class="video" id="video">
+  <button class="exit" onclick="sairVideo()">Sair ✕</button>
+  <img id="videoImg">
+</div>
+
+<audio id="musica" src="CHRIS - Se Você Quiser.mp3"></audio>
+
+<script>
+/* FUNDO */
+const c=document.getElementById("bg"),ctx=c.getContext("2d");
+let w,h,pts=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();onresize=resize;
+for(let i=0;i<120;i++)pts.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2});
+(function anim(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle="#fff";
+  pts.forEach(p=>{
+    ctx.globalAlpha=Math.random();
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  });
+  requestAnimationFrame(anim);
+})();
+
+/* INTRO */
+const musica=document.getElementById("musica");
+musica.volume=0.2;
+function entrar(){
+  document.getElementById("intro").style.display="none";
+  document.body.style.overflow="auto";
+  musica.play();
+}
+
+/* MENU */
+function abrir(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("ativa"));
+  document.getElementById(id).classList.add("ativa");
+}
+
+/* VÍDEO */
+const fotos=["1.jpeg","2.jpeg","3.jpeg","4.jpeg","5.jpeg","6.jpeg"];
+let i=0,interval;
+function iniciarVideo(){
+  document.getElementById("video").style.display="flex";
+  i=0;
+  document.getElementById("videoImg").src=fotos[i];
+  interval=setInterval(()=>{
+    i++;
+    if(i>=fotos.length) sairVideo();
+    else document.getElementById("videoImg").src=fotos[i];
+  },3500);
+}
+function sairVideo(){
+  clearInterval(interval);
+  document.getElementById("video").style.display="none";
+}
+</script>
+
+</body>
+</html>
